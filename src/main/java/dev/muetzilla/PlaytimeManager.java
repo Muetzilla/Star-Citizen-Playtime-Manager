@@ -18,9 +18,28 @@ public class PlaytimeManager {
 
     private String path = "";
 
+    public Date getLastDate() {
+        return lastDate;
+    }
+
+    public void setLastDate(Date lastDate) {
+        this.lastDate = lastDate;
+    }
+
+    Date lastDate;
+
     public PlaytimeManager() {
 
     }
+
+    private int longestSession = 0;
+    private Date longestSessionDate;
+
+    public ArrayList<Session> getAllSessions() {
+        return allSessions;
+    }
+
+    private ArrayList<Session> allSessions = new ArrayList<>();
 
     public PlaytimeManager(String path) {
         this.path = path;
@@ -49,8 +68,16 @@ public class PlaytimeManager {
         long hours = TimeUnit.MILLISECONDS.toHours(playtimeOneFile);
         long minutes = TimeUnit.MILLISECONDS.toMinutes(playtimeOneFile)
                 - TimeUnit.HOURS.toMinutes(TimeUnit.MILLISECONDS.toHours(playtimeOneFile));
-        System.out.println("Your Session on for the " + endDate + " was " + hours + " hours " + minutes + " minutes");
+        System.out.println("Your Session on the " + endDate + " was " + hours + " hours " + minutes + " minutes");
+        allSessions.add(new Session(startDate, endDate, (int) hours, (int) minutes));
+        if (hours * 60 + minutes >= longestSession) {
+            longestSession = (int) (hours * 60 + minutes);
+            longestSessionDate = endDate;
+        }
         totalPlaytime += playtimeOneFile;
+
+        lastDate = endDate;
+
         // Close the file
         reader.close();
     }
@@ -95,8 +122,6 @@ public class PlaytimeManager {
                 throw new RuntimeException(e);
             }
 
-            // Print the date
-//            System.out.println(date);
             return date;
         }
         try {
@@ -130,6 +155,7 @@ public class PlaytimeManager {
                 e.printStackTrace();
             }
         }
+        System.out.println("Your longest session was " + (int) longestSession / 60 + " hours and " + longestSession % 60 + " minutes on " + longestSessionDate);
     }
 
     public long getTotalPlaytime() {
