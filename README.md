@@ -15,7 +15,7 @@ Everytime you play Star Citizen a log file will be created. All those logfiles a
 If you have ever reinstalled Star Citizen the files of all sessions played before the reinstallation can't be tracked since the files are beeing deleted on deleting the game. 
 
 ## What's new?
-- A new button that lets you select wether you have playtime on the PTU servers that you would like to keep track of.
+- A new button that lets you select whether you have playtime on the PTU servers that you would like to keep track of or not.
 - A basic export of your playtime on the Live server into a json file
 
 ## What's next
