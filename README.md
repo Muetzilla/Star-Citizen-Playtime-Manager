@@ -20,4 +20,4 @@ If you have ever reinstalled Star Citizen the files of all sessions played befor
 
 ## What's next
 
-I'm currently working on a function to export the playtime into a seperate file. This will allow to save the playtime if the log files are beeing deleted for some reason.  
+I'm currently working on a function to export the playtime into a seperate file. This will allow to save the playtime if the log files are deleted for some reason.  
