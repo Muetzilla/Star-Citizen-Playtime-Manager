@@ -16,7 +16,7 @@ If you have ever reinstalled Star Citizen the files of all sessions played befor
 
 ## What's new?
 - A new button that lets you select whether you have playtime on the PTU servers that you would like to keep track of or not.
-- A basic export of your playtime on the Live server into a json file
+- A basic export of your playtime on the Live server into a JSON file
 
 ## What's next
 
