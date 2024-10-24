@@ -24,9 +24,13 @@ public class MainFrame extends JFrame {
     public MainFrame() {
         super("Star Citizen Playtime Calculator");
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setIconImage(Toolkit.getDefaultToolkit().getImage(ClassLoader.getSystemResource("logo.png")));
         getContentPane().setBackground(new Color(64, 64, 64));
         initFrame();
         setVisible(true);
+//        Image taskbarIcon = Toolkit.getDefaultToolkit().getImage("resources/logo.png");
+//
+//        setIconImage(taskbarIcon);
     }
 
     /**
@@ -40,7 +44,7 @@ public class MainFrame extends JFrame {
         southPanel.setLayout(new BorderLayout());
 
         JTextField pathInputField = new JTextField();
-        pathInputField.setText("ENTER YOUR PATH FOR THE LIVE LOGBACKUPS HERE");
+        pathInputField.setText("");//ENTER YOUR PATH FOR THE LIVE LOGBACKUPS HERE
         pathInputField.setBackground(new Color(64, 64, 64));
         pathInputField.setBorder(new LineBorder(new Color(190, 190, 190), 1));
         pathInputField.setForeground(new Color(200, 200, 200));
@@ -84,29 +88,14 @@ public class MainFrame extends JFrame {
         displayPlaytimeTextTotalTime.setOpaque(true);
         southPanel.add(displayPlaytimeTextTotalTime);
 
-        JButton exportButton = new JButton("Export Playtime");
-        exportButton.setBackground(new Color(100, 100, 100));
-        exportButton.setBorder(new LineBorder(new Color(100, 100, 100), 2));
-        exportButton.setForeground(new Color(200, 200, 200));
-        southPanel.add(exportButton);
-
+        JLabel displayYearlyPlaytime = new JLabel();
+        displayYearlyPlaytime.setBackground(new Color(64, 64, 64));
+        displayYearlyPlaytime.setForeground(new Color(200, 200, 200));
+        displayYearlyPlaytime.setOpaque(true);
+        southPanel.add(displayYearlyPlaytime);
         southPanel.setBackground(new Color(64, 64, 64));
         add(southPanel, BorderLayout.CENTER);
 
-        exportButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("EXPORT");
-                ExportPlaytime ep = new ExportPlaytime();
-                calculatePlaytime(pathInputField);
-//                StringBuilder s = new StringBuilder();
-//                for (Session allLiveSession : allLiveSessions) {
-//                    s.append(allLiveSession);
-//                }
-
-                ep.createAndSaveJsonFile("starcitizenPlaytime.json", buildJSONString());
-            }
-        });
 
         calculatePTUTimeButton.addActionListener(new ActionListener() {
             @Override
@@ -139,8 +128,42 @@ public class MainFrame extends JFrame {
                 }
 
                 displayPlaytimeTextTotalTime.setText("Your overall playtime is:  " + totalPlaytimeHours + " hours " + totalPlaytimeMinutes + " minutes");
+
+                getYearlyPlaytime(displayYearlyPlaytime, new int[]{2021, 2022, 2023, 2024, 2025});
+                ExportPlaytime ep = new ExportPlaytime();
+                ep.createAndSaveJsonFile("starcitizenPlaytime.json", buildJSONString(usePTUPlaytime));
+
             }
         });
+
+    }
+
+    public void getYearlyPlaytime(JLabel label, int[] years) {
+        StringBuilder totalYealryPlaytimeString = new StringBuilder("<html>");
+        for (int year : years) {
+            int yearlyHoursPlayed = 0;
+            int yealryminutesPlayed = 0;
+            for (Session allLiveSession : allLiveSessions) {
+                if (allLiveSession.getStartingTimeYear() == year) {
+                    yearlyHoursPlayed += allLiveSession.getHours();
+                    yealryminutesPlayed += allLiveSession.getMinutes();
+                }
+            }
+            if (usePTUPlaytime) {
+                for (Session allPTUSession : allPTUSessions) {
+                    if (allPTUSession.getStartingTimeYear() == year) {
+                        yearlyHoursPlayed += allPTUSession.getHours();
+                        yealryminutesPlayed += allPTUSession.getMinutes();
+                    }
+                }
+            }
+            yearlyHoursPlayed += yealryminutesPlayed / 60;
+            yealryminutesPlayed = yearlyHoursPlayed % 60;
+
+            totalYealryPlaytimeString.append("Your Playtime in the year ").append(year).append(" was: ").append(yearlyHoursPlayed).append(" hours and ").append(yealryminutesPlayed).append(" minutes. <br>");
+        }
+        totalYealryPlaytimeString.append("</html>");
+        label.setText(totalYealryPlaytimeString.toString());
 
     }
 
@@ -179,27 +202,33 @@ public class MainFrame extends JFrame {
             PlaytimeManager pm = new PlaytimeManager();
             pm.setPath(ptuPATH);
             pm.getFiles();
-//            String eptuPATH = path.replace("LIVE", "EPTU");
-//            System.out.println(eptuPATH);
-//            pm.setPath(eptuPATH);
-//            pm.getFiles();
+            String eptuPATH = path.replace("LIVE", "EPTU");
+            System.out.println(eptuPATH);
+            pm.setPath(eptuPATH);
+            pm.getFiles();
             Playtime p = pm.convertMilliesForDisplay();
             playtimeMap.put("ptuPlaytimeHours", p.hoursPlayed);
             playtimeMap.put("ptuPlaytimeMinutes", p.minutesPlayed);
             allPTUSessions = pm.getAllSessions();
 
         }
+
         lastDate = playtimeManager.getLastDate();
 
 
     }
 
-    public String buildJSONString() {
+    public String buildJSONString(boolean usePTUPlaytime) {
         StringBuilder buildingJsonString = new StringBuilder("[\n");
         for (Session allLiveSession : allLiveSessions) {
             buildingJsonString.append("{\n\"endDate\":\"").append(allLiveSession.getSessionEndDate()).append("\",\n\"timeInMs\":").append(allLiveSession.getPlaytimeInMsCalculated()).append("\n},\n");
         }
-        buildingJsonString.deleteCharAt(buildingJsonString.length() - 1);
+        if (usePTUPlaytime) {
+            for (Session allPTUSession : allPTUSessions) {
+                buildingJsonString.append("{\n\"endDate\":\"").append(allPTUSession.getSessionEndDate()).append("\",\n\"timeInMs\":").append(allPTUSession.getPlaytimeInMsCalculated()).append("\n},\n");
+            }
+        }
+        buildingJsonString.deleteCharAt(buildingJsonString.length() - 2);
         buildingJsonString.append("\n]");
         return buildingJsonString.toString();
     }

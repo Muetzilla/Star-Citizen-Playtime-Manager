@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63b800ed-a9f5-4b49-add8-fc5cdcc7aea9" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/logo.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/PlaytimeManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/PlaytimeManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/Session.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="15216" />
+    <option name="totalTimeSeconds" value="15283" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -25,7 +27,7 @@
     </option>
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -46,7 +48,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Github/Stromdateienumwandler/Stromdateienumwandler",
+    "last_opened_file_path": "C:/Github/Star-Citizen-Playtime-Manager/src/main/java/dev/muetzilla",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -56,6 +58,15 @@
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Github\Star-Citizen-Playtime-Manager\src\main\java\dev\muetzilla" />
+      <recent name="C:\Github\Star-Citizen-Playtime-Manager\src\main\java\dev\muetzilla\filesave" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Github\Star-Citizen-Playtime-Manager\src\main\resources" />
+    </key>
+  </component>
   <component name="RunManager">
     <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="dev.muetzilla.Main" />
@@ -98,6 +109,7 @@
       <workItem from="1679585705371" duration="419000" />
       <workItem from="1680206758083" duration="1036000" />
       <workItem from="1687781222805" duration="163000" />
+      <workItem from="1729783884796" duration="174000" />
     </task>
     <servers />
   </component>

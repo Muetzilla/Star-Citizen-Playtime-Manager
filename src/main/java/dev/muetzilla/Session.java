@@ -1,5 +1,6 @@
 package dev.muetzilla;
 
+import java.util.Calendar;
 import java.util.Date;
 
 public class Session {
@@ -11,6 +12,8 @@ public class Session {
 
     private int hours;
     private int minutes;
+
+    private Calendar calenderStartTime;
 
     public Date getSessionStartDate() {
         return sessionStartDate;
@@ -61,6 +64,21 @@ public class Session {
         this.sessionEndDate = sessionEndDate;
         this.hours = hours;
         this.minutes = minutes;
+
+        calenderStartTime = Calendar.getInstance();
+        calenderStartTime.setTime(sessionStartDate);
+    }
+
+    public Calendar getCalenderStartTime() {
+        return calenderStartTime;
+    }
+
+    public int getStartingTimeYear() {
+        return calenderStartTime.get(Calendar.YEAR);
+    }
+
+    public void setCalenderStartTime(Calendar calenderStartTime) {
+        this.calenderStartTime = calenderStartTime;
     }
 
     public Session() {
