@@ -135,7 +135,7 @@ public class MainFrame extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 try {
-                    URI url = new URI("https://github.com/Muetzilla/Star-Citizen-Playtime-Manager/blob/main/README.md");
+                    URI url = new URI("https://github.com/Muetzilla/Star-Citizen-Playtime-Manager/blob/ui_overhaul/Help.md");
                     if (Desktop.isDesktopSupported() && Desktop.getDesktop().isSupported(Desktop.Action.BROWSE)) {
                         Desktop.getDesktop().browse(url);
                     } else {
