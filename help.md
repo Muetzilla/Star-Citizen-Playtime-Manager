@@ -1,0 +1,3 @@
+# Help for the Star Citizen Playtime Manager
+
+coming soon... 

@@ -3,8 +3,8 @@ package dev.muetzilla.filesave;
 import java.io.FileWriter;
 import java.io.IOException;
 
-public class ExportPlaytime {
-    public void createAndSaveJsonFile(String filePath, String stringToSave) {
+public class ExportFiles {
+    public void createAndSaveFile(String filePath, String stringToSave) {
         try {
             // Write the JSON object to a file
             FileWriter fileWriter = new FileWriter(filePath);

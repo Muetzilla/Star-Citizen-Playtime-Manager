@@ -4,6 +4,8 @@ import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -82,24 +84,33 @@ public class PlaytimeManager {
         reader.close();
     }
 
-    public void getFiles() {
-        // Create a File object for the folder
-        File folder = new File(path);
+    public boolean getFiles() {
 
-        // Get a list of all the files in the folder
-        File[] files = folder.listFiles();
+        if (Files.exists(Paths.get(path))) {
 
-        // Iterate through the list of files
-        for (File file : files) {
-            // Open the file
-            try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
-                searchThroughLines(reader);
-            } catch (IOException e) {
-                e.printStackTrace();
+
+            // Create a File object for the folder
+            File folder = new File(path);
+
+            // Get a list of all the files in the folder
+            File[] files = folder.listFiles();
+
+            // Iterate through the list of files
+            for (File file : files) {
+                // Open the file
+                try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                    searchThroughLines(reader);
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
+            String parentDir = folder.getParent();
+            getCurrentGameSessionTime(parentDir);
+            return true;
+        } else {
+            System.out.println("There is no directory for this path! Please set the correct path in the settings");
+            return false;
         }
-        String parentDir = folder.getParent();
-        getCurrentGameSessionTime(parentDir);
 
     }
 
