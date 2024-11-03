@@ -89,6 +89,12 @@ public class MainFrame extends JFrame {
         displayPlaytimeTextTotalTime.setOpaque(true);
         southPanel.add(displayPlaytimeTextTotalTime);
 
+        JLabel displayPlaytimeTextTotalTimeInDays = new JLabel();
+        displayPlaytimeTextTotalTimeInDays.setBackground(new Color(64, 64, 64));
+        displayPlaytimeTextTotalTimeInDays.setForeground(new Color(200, 200, 200));
+        displayPlaytimeTextTotalTimeInDays.setOpaque(true);
+        southPanel.add(displayPlaytimeTextTotalTimeInDays);
+
         JLabel displayYearlyPlaytime = new JLabel();
         displayYearlyPlaytime.setBackground(new Color(64, 64, 64));
         displayYearlyPlaytime.setForeground(new Color(200, 200, 200));
@@ -115,8 +121,11 @@ public class MainFrame extends JFrame {
         }
 
         displayPlaytimeTextTotalTime.setText("Your overall playtime is:  " + totalPlaytimeHours + " hours " + totalPlaytimeMinutes + " minutes");
-
-        getYearlyPlaytime(displayYearlyPlaytime, new int[]{2021, 2022, 2023, 2024, 2025});
+        int totalPlaytimeDays = totalPlaytimeHours / 24;
+        int totalPlaytimeDaysHours = totalPlaytimeHours % 24;
+        displayPlaytimeTextTotalTimeInDays.setText("Your overall playtime in days is: " + totalPlaytimeDays + " days, " + totalPlaytimeDaysHours + " hours and " + totalPlaytimeMinutes + " minutes");
+        //TODO make it show all years where there is playtime, not hardcoded
+        getYearlyPlaytime(displayYearlyPlaytime, new int[]{2021, 2022, 2023, 2024});
         ExportFiles ep = new ExportFiles();
         ep.createAndSaveFile("starcitizenPlaytime.json", buildJSONString(configManager.getPtuIsInstalled()));
 
@@ -169,6 +178,7 @@ public class MainFrame extends JFrame {
 
     private void updateConfigSettings() {
         ExportFiles ep = new ExportFiles();
+        configManager.setLogbackupsLivePath(configManager.getLogbackupsLivePath().replaceAll("(?<!\\\\)\\\\(?!\\\\)", "\\\\\\\\").substring(1, configManager.getLogbackupsLivePath().length() - 1));
         ep.createAndSaveFile("config.json", configManager.buildConfigJSON());
     }
 
@@ -178,6 +188,7 @@ public class MainFrame extends JFrame {
         mainPanel.setLayout(new BorderLayout());
         JPanel northPanel = new JPanel();
         northPanel.setLayout(new BorderLayout());
+
 
         JTextField pathInputField = new JTextField();
         pathInputField.setText(configManager.getLogbackupsLivePath().replace("\\\\", "\\"));
@@ -219,10 +230,10 @@ public class MainFrame extends JFrame {
             }
 
             private void updateText() {
+                //TODO Check why writing a text is not working properly, last 3 chars seem to be missing...
                 InputFieldContent[0] = new String[]{pathInputField.getText()};
                 String pathFromInputField= Arrays.toString(InputFieldContent[0]);
-                //.substring(1, pathFromInputField.length() - 1)
-                configManager.setLogbackupsLivePath(pathFromInputField.replaceAll("(?<!\\\\)\\\\(?!\\\\)", "\\\\\\\\").substring(1, pathFromInputField.length() - 1));
+                configManager.setLogbackupsLivePath(pathFromInputField);
                 System.out.println("Updated content: " + pathFromInputField.replaceAll("(?<!\\\\)\\\\(?!\\\\)", "\\\\\\\\").substring(1, pathFromInputField.length() - 1));
             }
         });
