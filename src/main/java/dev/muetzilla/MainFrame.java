@@ -102,7 +102,7 @@ public class MainFrame extends JFrame {
         southPanel.add(displayYearlyPlaytime);
         southPanel.setBackground(new Color(64, 64, 64));
         add(southPanel, BorderLayout.CENTER);
-
+        //Calcuale Playtime
         calculatePlaytime(configManager.getLogbackupsLivePath());
         displayPlaytimeTextLIVE.setText("Your playtime on the LIVE servers is:  " + playtimeMap.get("livePlaytimeHours") + " hours " + playtimeMap.get("livePlaytimeMinutes") + " minutes");
         int totalPlaytimeHours = playtimeMap.get("livePlaytimeHours");
@@ -283,30 +283,31 @@ public class MainFrame extends JFrame {
         PlaytimeManager playtimeManager = new PlaytimeManager();
         playtimeManager.setPath(path);
         boolean correctPath = playtimeManager.getFiles();
-        Playtime playtime = playtimeManager.convertMilliesForDisplay();
-        playtimeMap.put("livePlaytimeHours", playtime.hoursPlayed);
-        playtimeMap.put("livePlaytimeMinutes", playtime.minutesPlayed);
-        allLiveSessions = playtimeManager.getAllSessions();
+        if(correctPath) {
+            Playtime playtime = playtimeManager.convertMilliesForDisplay();
+            playtimeMap.put("livePlaytimeHours", playtime.hoursPlayed);
+            playtimeMap.put("livePlaytimeMinutes", playtime.minutesPlayed);
+            allLiveSessions = playtimeManager.getAllSessions();
 
-        if (configManager.getPtuIsInstalled()) {
-            String ptuPATH = path.replace("LIVE", "PTU");
-            PlaytimeManager pm = new PlaytimeManager();
-            pm.setPath(ptuPATH);
-            pm.getFiles();
-            String eptuPATH = path.replace("LIVE", "EPTU");
-            System.out.println(eptuPATH);
-            pm.setPath(eptuPATH);
-            pm.getFiles();
-            Playtime p = pm.convertMilliesForDisplay();
-            playtimeMap.put("ptuPlaytimeHours", p.hoursPlayed);
-            playtimeMap.put("ptuPlaytimeMinutes", p.minutesPlayed);
-            allPTUSessions = pm.getAllSessions();
+            if (configManager.getPtuIsInstalled()) {
+                String ptuPATH = path.replace("LIVE", "PTU");
+                PlaytimeManager pm = new PlaytimeManager();
+                pm.setPath(ptuPATH);
+                pm.getFiles();
+                String eptuPATH = path.replace("LIVE", "EPTU");
+                System.out.println(eptuPATH);
+                pm.setPath(eptuPATH);
+                pm.getFiles();
+                Playtime p = pm.convertMilliesForDisplay();
+                playtimeMap.put("ptuPlaytimeHours", p.hoursPlayed);
+                playtimeMap.put("ptuPlaytimeMinutes", p.minutesPlayed);
+                allPTUSessions = pm.getAllSessions();
+
+            }
+
+            lastDate = playtimeManager.getLastDate();
 
         }
-
-        lastDate = playtimeManager.getLastDate();
-
-
     }
 
     public String buildJSONString(boolean usePTUPlaytime) {

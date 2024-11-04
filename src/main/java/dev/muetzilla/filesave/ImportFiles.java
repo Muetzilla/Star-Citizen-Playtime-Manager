@@ -50,6 +50,8 @@ public class ImportFiles {
         } else {
             System.out.println("File does not exist.");
         }
+        ExportFiles exportFiles = new ExportFiles();
+        exportFiles.createAndSaveFile("config.json", new ConfigManager().buildConfigJSON());
         return new ConfigManager();
     }
 }
