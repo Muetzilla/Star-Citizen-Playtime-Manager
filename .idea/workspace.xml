@@ -5,11 +5,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="63b800ed-a9f5-4b49-add8-fc5cdcc7aea9" name="Changes" comment="Add Help URL">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/ConfigManager.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/filesave/ImportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/filesave/ImportFiles.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.gitignore" beforeDir="false" afterPath="$PROJECT_DIR$/.gitignore" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +13,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="29756" />
+    <option name="totalTimeSeconds" value="29812" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -152,7 +148,7 @@
       <workItem from="1754470745116" duration="588000" />
       <workItem from="1757518233685" duration="588000" />
       <workItem from="1757924075410" duration="592000" />
-      <workItem from="1774793193339" duration="150000" />
+      <workItem from="1774793193339" duration="205000" />
     </task>
     <task id="LOCAL-00001" summary="Add Logo">
       <created>1729784079212</created>
