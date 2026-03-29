@@ -49,9 +49,12 @@ public class ImportFiles {
 
         } else {
             System.out.println("File does not exist.");
+            System.out.println("Continue with empty Path");
+            System.out.println("Create empty \"config.json\"");
+            ExportFiles exportFiles = new ExportFiles();
+            exportFiles.createAndSaveFile("config.json", new ConfigManager().buildConfigJSON());
         }
-        ExportFiles exportFiles = new ExportFiles();
-        exportFiles.createAndSaveFile("config.json", new ConfigManager().buildConfigJSON());
+
         return new ConfigManager();
     }
 }

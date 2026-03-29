@@ -4,12 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="63b800ed-a9f5-4b49-add8-fc5cdcc7aea9" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/resources/logo.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="63b800ed-a9f5-4b49-add8-fc5cdcc7aea9" name="Changes" comment="Add Help URL">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/ConfigManager.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/ConfigManager.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/Main.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/MainFrame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/MainFrame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/Session.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/Session.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/dev/muetzilla/filesave/ImportFiles.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/dev/muetzilla/filesave/ImportFiles.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,7 +17,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="DarkyenusTimeTracker">
-    <option name="totalTimeSeconds" value="15283" />
+    <option name="totalTimeSeconds" value="29756" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -27,37 +27,53 @@
     </option>
   </component>
   <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$" value="old_version" />
+      </map>
+    </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;Muetzilla&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/Muetzilla/Star-Citizen-Playtime-Manager.git&quot;,
+    &quot;accountId&quot;: &quot;8a654529-8ac8-4903-ba60-da7f0c9ac0f2&quot;
+  }
+}</component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="MavenImportPreferences">
-    <option name="importingSettings">
-      <MavenImportingSettings>
-        <option name="workspaceImportEnabled" value="true" />
-      </MavenImportingSettings>
-    </option>
-  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2IPVUKAGilD8oSce919ffX0VgJx" />
   <component name="ProjectViewState">
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "last_opened_file_path": "C:/Github/Star-Citizen-Playtime-Manager/src/main/java/dev/muetzilla",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "settings.editor.selected.configurable": "preferences.keymap",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;ui__overhaul&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Github/Star-Citizen-Playtime-Manager/src/main/java/dev/muetzilla&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;SettingsForm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Github\Star-Citizen-Playtime-Manager\src\main\java\dev\muetzilla" />
@@ -87,6 +103,14 @@
       </list>
     </recent_temporary>
   </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-fbdcb00ec9e3-intellij.indexing.shared.core-IU-251.25410.129" />
+        <option value="bundled-js-predefined-d6986cc7102b-6a121458b545-JavaScript-IU-251.25410.129" />
+      </set>
+    </attachedChunks>
+  </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
@@ -109,11 +133,69 @@
       <workItem from="1679585705371" duration="419000" />
       <workItem from="1680206758083" duration="1036000" />
       <workItem from="1687781222805" duration="163000" />
-      <workItem from="1729783884796" duration="174000" />
+      <workItem from="1729783884796" duration="4394000" />
+      <workItem from="1730209807971" duration="2204000" />
+      <workItem from="1730325037471" duration="610000" />
+      <workItem from="1730554146305" duration="1559000" />
+      <workItem from="1730625799747" duration="1489000" />
+      <workItem from="1730644097729" duration="10260000" />
+      <workItem from="1730663940384" duration="402000" />
+      <workItem from="1730664361502" duration="2386000" />
+      <workItem from="1730742388537" duration="2678000" />
+      <workItem from="1739790134476" duration="1703000" />
+      <workItem from="1747155880996" duration="81000" />
+      <workItem from="1748512417206" duration="331000" />
+      <workItem from="1753879359053" duration="781000" />
+      <workItem from="1753979005111" duration="341000" />
+      <workItem from="1754129726046" duration="589000" />
+      <workItem from="1754310170117" duration="584000" />
+      <workItem from="1754470745116" duration="588000" />
+      <workItem from="1757518233685" duration="588000" />
+      <workItem from="1757924075410" duration="592000" />
+      <workItem from="1774793193339" duration="150000" />
     </task>
+    <task id="LOCAL-00001" summary="Add Logo">
+      <created>1729784079212</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1729784079212</updated>
+    </task>
+    <task id="LOCAL-00002" summary="Add Settings and save of config">
+      <created>1730665143007</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1730665143007</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Add Help URL">
+      <created>1730665198509</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1730665198509</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Add Logo" />
+    <MESSAGE value="Add Settings and save of config" />
+    <MESSAGE value="Add Help URL" />
+    <option name="LAST_COMMIT_MESSAGE" value="Add Help URL" />
   </component>
 </project>

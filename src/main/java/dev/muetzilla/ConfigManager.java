@@ -8,9 +8,11 @@ public class ConfigManager {
     public ConfigManager(String logbackupsLivePath, Boolean ptuIsInstalled) {
         this.logbackupsLivePath = logbackupsLivePath;
         this.ptuIsInstalled = ptuIsInstalled;
+        formatString();
     }
 
     public ConfigManager() {
+        formatString();
     }
 
     public String getLogbackupsLivePath() {
@@ -19,6 +21,7 @@ public class ConfigManager {
 
     public void setLogbackupsLivePath(String logbackupsLivePath) {
         this.logbackupsLivePath = logbackupsLivePath;
+        formatString();
     }
 
     public boolean getPtuIsInstalled() {
@@ -27,6 +30,18 @@ public class ConfigManager {
 
     public void setPtuIsInstalled(boolean ptuIsInstalled) {
         this.ptuIsInstalled = ptuIsInstalled;
+    }
+
+    /**
+     * Formats the String to a fitting format.
+     *
+     * Escapes all \ in the path by adding a \\ instead.
+     *
+     * Removes the [] at the start and the end which result from converting the Array to a String after reading the String from the input filed.
+     */
+    public void formatString(){
+        logbackupsLivePath = logbackupsLivePath.replaceAll("(?<!\\\\)\\\\(?!\\\\)", "\\\\\\\\");
+        logbackupsLivePath = logbackupsLivePath.replaceAll("[\\[\\]]", "");
     }
     public String buildConfigJSON(){
         return "{" +

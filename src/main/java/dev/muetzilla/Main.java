@@ -9,7 +9,7 @@ public class Main {
         ImportFiles importFiles = new ImportFiles();
         System.out.println((importFiles.readConfigFile().toString()));
         MainFrame mf = new MainFrame(importFiles.readConfigFile());
-        mf.setSize(600, 400);
+        mf.setSize(600, 500);
     }
 
     public static void main(String[] args) {

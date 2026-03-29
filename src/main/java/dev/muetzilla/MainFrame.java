@@ -103,32 +103,39 @@ public class MainFrame extends JFrame {
         southPanel.setBackground(new Color(64, 64, 64));
         add(southPanel, BorderLayout.CENTER);
         //Calcuale Playtime
-        calculatePlaytime(configManager.getLogbackupsLivePath());
-        displayPlaytimeTextLIVE.setText("Your playtime on the LIVE servers is:  " + playtimeMap.get("livePlaytimeHours") + " hours " + playtimeMap.get("livePlaytimeMinutes") + " minutes");
-        int totalPlaytimeHours = playtimeMap.get("livePlaytimeHours");
-        int totalPlaytimeMinutes = playtimeMap.get("livePlaytimeMinutes");
 
-        if (configManager.getPtuIsInstalled()) {
-            displayPlaytimeTextPTU.setText("Your playtime on the PTU servers is:  " + playtimeMap.get("ptuPlaytimeHours") + " hours " + playtimeMap.get("ptuPlaytimeMinutes") + " minutes");
-            totalPlaytimeHours += playtimeMap.get("ptuPlaytimeHours");
-            totalPlaytimeMinutes += playtimeMap.get("ptuPlaytimeMinutes");
-            if (totalPlaytimeMinutes >= 60) {
-                totalPlaytimeMinutes = totalPlaytimeMinutes % 60;
-                totalPlaytimeHours++;
+        if(calculatePlaytime(configManager.getLogbackupsLivePath())) {
+            displayPlaytimeTextLIVE.setText("Your playtime on the LIVE servers is:  " + playtimeMap.get("livePlaytimeHours") + " hours " + playtimeMap.get("livePlaytimeMinutes") + " minutes");
+            int totalPlaytimeHours = playtimeMap.get("livePlaytimeHours");
+            int totalPlaytimeMinutes = playtimeMap.get("livePlaytimeMinutes");
+
+            if (configManager.getPtuIsInstalled()) {
+                displayPlaytimeTextPTU.setText("Your playtime on the PTU servers is:  " + playtimeMap.get("ptuPlaytimeHours") + " hours " + playtimeMap.get("ptuPlaytimeMinutes") + " minutes");
+                totalPlaytimeHours += playtimeMap.get("ptuPlaytimeHours");
+                totalPlaytimeMinutes += playtimeMap.get("ptuPlaytimeMinutes");
+                if (totalPlaytimeMinutes >= 60) {
+                    totalPlaytimeMinutes = totalPlaytimeMinutes % 60;
+                    totalPlaytimeHours++;
+                }
+
+
             }
 
 
+            displayPlaytimeTextTotalTime.setText("Your overall playtime is:  " + totalPlaytimeHours + " hours " + totalPlaytimeMinutes + " minutes");
+            int totalPlaytimeDays = totalPlaytimeHours / 24;
+            int totalPlaytimeDaysHours = totalPlaytimeHours % 24;
+            displayPlaytimeTextTotalTimeInDays.setText("Your overall playtime in days is: " + totalPlaytimeDays + " days, " + totalPlaytimeDaysHours + " hours and " + totalPlaytimeMinutes + " minutes");
+            //TODO make it show all years where there is playtime, not hardcoded
+            getYearlyPlaytime(displayYearlyPlaytime, new int[]{2021, 2022, 2023, 2024});
+            ExportFiles ep = new ExportFiles();
+            ep.createAndSaveFile("starcitizenPlaytime.json", buildJSONString(configManager.getPtuIsInstalled()));
+        }else{
+            displayPlaytimeTextTotalTime.setText("<html>There was a problem fetching your playtime at: <br><br>\""
+                    + configManager.getLogbackupsLivePath().replace("\\\\", "\\") + "\"<br><br>" +
+                    "Please check if the path is valid or update it in the settings menu.<html>");
+            displayPlaytimeTextTotalTime.setForeground(new Color(255, 255, 255));
         }
-
-        displayPlaytimeTextTotalTime.setText("Your overall playtime is:  " + totalPlaytimeHours + " hours " + totalPlaytimeMinutes + " minutes");
-        int totalPlaytimeDays = totalPlaytimeHours / 24;
-        int totalPlaytimeDaysHours = totalPlaytimeHours % 24;
-        displayPlaytimeTextTotalTimeInDays.setText("Your overall playtime in days is: " + totalPlaytimeDays + " days, " + totalPlaytimeDaysHours + " hours and " + totalPlaytimeMinutes + " minutes");
-        //TODO make it show all years where there is playtime, not hardcoded
-        getYearlyPlaytime(displayYearlyPlaytime, new int[]{2021, 2022, 2023, 2024});
-        ExportFiles ep = new ExportFiles();
-        ep.createAndSaveFile("starcitizenPlaytime.json", buildJSONString(configManager.getPtuIsInstalled()));
-
         settingsButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -167,19 +174,21 @@ public class MainFrame extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 System.out.println("Dialog Closed, create config file!");
-                updateConfigSettings();            }
+                updateConfigSettings();
+            }
 
             @Override
             public void windowClosed(WindowEvent e) {
                 System.out.println("Dialog Closed, create config file!");
-                updateConfigSettings();            }
+                updateConfigSettings();
+            }
         });
     }
 
     private void updateConfigSettings() {
         ExportFiles ep = new ExportFiles();
-        configManager.setLogbackupsLivePath(configManager.getLogbackupsLivePath().replaceAll("(?<!\\\\)\\\\(?!\\\\)", "\\\\\\\\").substring(1, configManager.getLogbackupsLivePath().length() - 1));
-        ep.createAndSaveFile("config.json", configManager.buildConfigJSON());
+        configManager.formatString();
+        ep.createAndSaveFile("config.json", configManager.buildConfigJSON()); 
     }
 
     public void styleDialog(){
@@ -234,7 +243,7 @@ public class MainFrame extends JFrame {
                 InputFieldContent[0] = new String[]{pathInputField.getText()};
                 String pathFromInputField= Arrays.toString(InputFieldContent[0]);
                 configManager.setLogbackupsLivePath(pathFromInputField);
-                System.out.println("Updated content: " + pathFromInputField.replaceAll("(?<!\\\\)\\\\(?!\\\\)", "\\\\\\\\").substring(1, pathFromInputField.length() - 1));
+                System.out.println("Updated String usint the new format method: " + configManager.getLogbackupsLivePath());
             }
         });
 
@@ -279,7 +288,7 @@ public class MainFrame extends JFrame {
 
 
 
-    public void calculatePlaytime(String path) {
+    public boolean calculatePlaytime(String path) {
         PlaytimeManager playtimeManager = new PlaytimeManager();
         playtimeManager.setPath(path);
         boolean correctPath = playtimeManager.getFiles();
@@ -308,6 +317,7 @@ public class MainFrame extends JFrame {
             lastDate = playtimeManager.getLastDate();
 
         }
+        return correctPath;
     }
 
     public String buildJSONString(boolean usePTUPlaytime) {
